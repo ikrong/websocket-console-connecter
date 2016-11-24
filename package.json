@@ -15,5 +15,6 @@
   "author": "ikrong",
   "license": "MIT",
   "dependencies": {
+    "websocket": "^1.0.23"
   }
 }

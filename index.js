@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 var WebSocketServer = require('websocket').server;
 var http = require('http');
 
