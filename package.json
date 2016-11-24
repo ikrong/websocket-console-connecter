@@ -1,0 +1,19 @@
+{
+  "name": "ws-console",
+  "version": "1.0.0",
+  "description": "use websocket and browser console achieve an convenient debug tool !",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ws",
+    "websocket",
+    "console",
+    "debug"
+  ],
+  "author": "ikrong",
+  "license": "MIT",
+  "dependencies": {
+  }
+}
