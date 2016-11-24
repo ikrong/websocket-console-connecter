@@ -77,7 +77,14 @@ wsServer.on('request', function (request) {
     waiting_input(1);
     connection.on('message', function (message) {
         if (message.type === 'utf8') {
-            console.log(message.utf8Data);
+            var msg = JSON.parse(message.utf8Data);
+            if (msg.args && msg.args.length) {
+                msg.args.map(function (item, key) {
+                    console.log("\n" + msg.method + "\t" + JSON.stringify(item));
+                })
+            } else {
+                console.log("\n" + msg.method + "\t" + JSON.stringify(msg.args));
+            }
         }
         else if (message.type === 'binary') {
             console.log("binary file isn't support!");

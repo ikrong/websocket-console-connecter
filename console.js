@@ -19,8 +19,12 @@ if (WebSocket) {
 		}
 	}
 	ws.onmessage = function (msg) {
-		var result = eval(msg.data);
-		send_log("log", [result]);
+		try {
+			var result = eval(msg.data);
+			send_log("log", [result]);
+		} catch (e) {
+			send_log("error", [e]);
+		}
 	}
 }
 
