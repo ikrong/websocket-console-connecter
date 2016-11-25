@@ -1,4 +1,4 @@
-var ws_link = "ws://localhost:8080";
+var ws_link = "ws://THIS_IS_YOUR_HOST";
 
 //将浏览器console发送至服务器
 var send_log = function () { };

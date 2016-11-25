@@ -1,5 +1,7 @@
 var WSServer = require('websocket').server;
 var http = require('http');
+var url = require('url');
+var fs = require('fs');
 var readline = require('readline');
 
 //创建readline接口实例
@@ -8,7 +10,7 @@ var rl = readline.createInterface({
     output: process.stdout
 });
 
-var deal_input = function () { };
+var deal_input = function () {};
 
 // question方法
 var waiting_input = function (showdetail) {
@@ -38,9 +40,36 @@ rl.on("close", function () {
 });
 
 var server = http.createServer(function (request, response) {
-    console.log((new Date()) + ' Received request for ' + request.url);
-    response.writeHead(404);
-    response.end();
+    console.log(request);
+    console.log(url.parse(request.url));
+    var urlInfo = url.parse(request.url);
+    if (urlInfo.pathname == "/console.js") {
+        fs.readFile("console.js", function (err, data) {
+            if (err) {
+                console.log(err);
+                // HTTP 状态码: 404 : NOT FOUND
+                // Content Type: text/plain
+                response.writeHead(404, {
+                    'Content-Type': 'text/html'
+                });
+            } else {
+                // HTTP 状态码: 200 : OK
+                // Content Type: text/plain
+                response.writeHead(200, {
+                    'Content-Type': 'application/x-javascript'
+                });
+                var body = data.toString().replace(/THIS_IS_YOUR_HOST/g, request.headers.host);
+                // 响应文件内容
+                response.write(body);
+            }
+            //  发送响应数据
+            response.end();
+        });
+    } else {
+        console.log((new Date()) + ' Received request for ' + request.url);
+        response.writeHead(404);
+        response.end();
+    }
 });
 server.listen(8080, function () {
     console.log((new Date()) + ' Server is listening on port 8080');
@@ -85,8 +114,7 @@ wsServer.on('request', function (request) {
             } else {
                 console.log("\n" + msg.method + "\t" + JSON.stringify(msg.args));
             }
-        }
-        else if (message.type === 'binary') {
+        } else if (message.type === 'binary') {
             console.log("binary file isn't support!");
         }
     });
