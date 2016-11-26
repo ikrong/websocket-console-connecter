@@ -1,10 +1,13 @@
 {
   "name": "ws-console",
-  "version": "1.0.0",
+  "version": "0.1.1",
   "description": "use websocket and browser console achieve an convenient debug tool !",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "w2c": "bin/w2c.js"
   },
   "keywords": [
     "ws",
@@ -15,6 +18,7 @@
   "author": "ikrong",
   "license": "MIT",
   "dependencies": {
+    "commander": "^2.9.0",
     "websocket": "^1.0.23"
   }
 }

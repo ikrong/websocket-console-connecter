@@ -1,31 +1,45 @@
 var ws_link = "ws://THIS_IS_YOUR_HOST";
 
+var ws = {};
 //将浏览器console发送至服务器
-var send_log = function () { };
+var send_log = function (method, args) {
+	ws.send(JSON.stringify({
+		method: method,
+		args: args
+	}));
+};
 //处理服务器需求
 var deal_server_code = function (string) {
-	eval(JSON.parse(string));
+	if (URL && Blob) {
+		var script = document.createElement("script");
+		script.src = URL.createObjectURL(new Blob([string], {
+			type: "application/x-javascript"
+		}));
+		document.body.appendChild(script);
+	} else {
+		eval(string);
+	}
 };
 
-var ws;
-if (WebSocket) {
+var createWS = function () {
 	ws = new WebSocket(ws_link, "echo-protocol");
 	ws.onopen = function () {
-		send_log = function (method, args) {
-			ws.send(JSON.stringify({
-				method: method,
-				args: args
-			}))
-		}
+		console.log("WebSocket已经就绪!");
 	}
 	ws.onmessage = function (msg) {
-		try {
-			var result = eval(msg.data);
-			send_log("log", [result]);
-		} catch (e) {
-			send_log("error", [e]);
+		deal_server_code(msg.data);
+	}
+	ws.onclose = function () {
+		if (confirm("WebSocket已经关闭,是否重新建立链接?")) {
+			createWS();
 		}
 	}
+}
+
+if (WebSocket) {
+	createWS();
+} else {
+	alert("您的浏览器不支持websocket");
 }
 
 // Injected Ionic CLI Console Logger
