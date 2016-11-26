@@ -1,6 +1,6 @@
 {
   "name": "w2c",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Use websocket and browser console achieve an convenient debug tool !",
   "main": "index.js",
   "bin": {
