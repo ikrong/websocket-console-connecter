@@ -43,6 +43,7 @@ if (WebSocket) {
 }
 
 // Injected Ionic CLI Console Logger
+// the code bellow is copied from ionic2 code, thx ionic team!
 (function () {
 	var methods = "assert clear count debug dir dirxml error exception group groupCollapsed groupEnd info log markTimeline profile profileEnd table time timeEnd timeStamp trace warn".split(" ");
 	var console = (window.console = window.console || {});
@@ -53,10 +54,6 @@ if (WebSocket) {
 	function sendConsoleLog(method, args) {
 		try {
 			send_log(method, args)
-			// var xhr = new XMLHttpRequest();
-			// xhr.open("POST", "/__ionic-cli/console", true);
-			// xhr.send(JSON.stringify({ index: logCount, method: method, ts: Date.now(), args: args }));
-			// logCount++;
 		} catch (e) { }
 	}
 	for (var x = 0; x < methods.length; x++) {
