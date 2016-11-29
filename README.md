@@ -1,3 +1,4 @@
+[![Travis branch](https://img.shields.io/travis/ikrong/websocket-console-connecter/master.svg?style=flat-square)](https://travis-ci.org/ikrong/websocket-console-connecter)
 [![](https://img.shields.io/npm/v/w2c.svg?style=flat-square)](https://www.npmjs.org/package/w2c)
 [![npm](https://img.shields.io/npm/dt/w2c.svg?style=flat-square)](https://www.npmjs.org/package/w2c)
 [![license](https://img.shields.io/github/license/ikrong/websocket-console-connecter.svg?style=flat-square)](https://github.com/ikrong/websocket-console-connecter/blob/master/LICENSE)
