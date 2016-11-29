@@ -1,7 +1,7 @@
 var ws_link = "ws://THIS_IS_YOUR_HOST";
 
 var ws = {};
-//将浏览器console发送至服务器
+//将浏览器console发送至服务器 
 var send_log = function (method, args) {
 	ws.send(JSON.stringify({
 		method: method,
