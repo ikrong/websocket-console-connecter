@@ -4,7 +4,7 @@
   "description": "Use websocket and browser console achieve an convenient debug tool !",
   "main": "index.js",
   "bin": {
-    "w2c": "bin/w2c.js"
+    "w2c": "bin/w2c"
   },
   "keywords": [
     "ws",
